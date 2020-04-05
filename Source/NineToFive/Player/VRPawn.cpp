@@ -315,6 +315,29 @@ void AVRPawn::ThumbstickLeftX(float val)
 	{
 		// Update the value.
 		leftHand->thumbstick.X = val;
+
+		// Depending on the current movement mode allow thumbstick to move player.
+		bool moveEnabled = false;
+		switch (vrMovement->currentMovementMode)
+		{
+		case EVRMovementMode::Joystick:
+		case EVRMovementMode::SpeedRamp:
+			moveEnabled = true;
+			break;
+		}
+
+		// Setup movement if needed.
+		if (moveEnabled)
+		{
+			if (vrMovement && vrMovement->canMove)
+			{
+				if (val != 0.0f)
+				{
+					if (!movingHand) movingHand = leftHand;
+				}
+				else if (movingHand == leftHand && FMath::Abs(leftHand->thumbstick.Y) == 0.0f) movingHand = nullptr;
+			}
+		}
 	}
 }
 
@@ -324,6 +347,29 @@ void AVRPawn::ThumbstickLeftY(float val)
 	{
 		// Update the value.
 		leftHand->thumbstick.Y = val;
+
+		// Depending on the current movement mode allow thumbstick to move player.
+		bool moveEnabled = false;
+		switch (vrMovement->currentMovementMode)
+		{
+		case EVRMovementMode::Joystick:
+		case EVRMovementMode::SpeedRamp:
+			moveEnabled = true;
+			break;
+		}
+
+		// Setup movement if needed.
+		if (moveEnabled)
+		{
+			if (vrMovement && vrMovement->canMove)
+			{
+				if (val != 0.0f)
+				{
+					if (!movingHand) movingHand = leftHand;
+				}
+				else if (movingHand == leftHand && FMath::Abs(leftHand->thumbstick.X) == 0.0f) movingHand = nullptr;
+			}
+		}	
 	}
 }
 
@@ -333,6 +379,29 @@ void AVRPawn::ThumbstickRightX(float val)
 	{
 		// Update the value.
 		rightHand->thumbstick.X = val;
+
+		// Depending on the current movement mode allow thumbstick to move player.
+		bool moveEnabled = false;
+		switch (vrMovement->currentMovementMode)
+		{
+		case EVRMovementMode::Joystick:
+		case EVRMovementMode::SpeedRamp:
+			moveEnabled = true;
+			break;
+		}
+
+		// Setup movement if needed.
+		if (moveEnabled)
+		{
+			if (vrMovement && vrMovement->canMove)
+			{
+				if (val != 0.0f)
+				{
+					if (!movingHand) movingHand = rightHand;
+				}
+				else if (movingHand == rightHand && FMath::Abs(rightHand->thumbstick.Y) == 0.0f) movingHand = nullptr;
+			}
+		}	
 	}	
 }
 
@@ -342,6 +411,29 @@ void AVRPawn::ThumbstickRightY(float val)
 	{
 		// Update the value.
 		rightHand->thumbstick.Y = val;
+
+		// Depending on the current movement mode allow thumbstick to move player.
+		bool moveEnabled = false;
+		switch (vrMovement->currentMovementMode)
+		{
+		case EVRMovementMode::Joystick:
+		case EVRMovementMode::SpeedRamp:
+			moveEnabled = true;
+			break;
+		}
+
+		// Setup movement if needed.
+		if (moveEnabled)
+		{
+			if (vrMovement && vrMovement->canMove)
+			{
+				if (val != 0.0f)
+				{
+					if (!movingHand) movingHand = rightHand;
+				}
+				else if (movingHand == rightHand && FMath::Abs(rightHand->thumbstick.X) == 0.0f) movingHand = nullptr;
+			}
+		}	
 	}
 }
 
