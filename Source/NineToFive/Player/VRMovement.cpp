@@ -88,7 +88,7 @@ AVRMovement::AVRMovement()
 	vignetteTransitionSpeed = 5.0f;
 	devHandOffset = FVector(70.0f, 25.0f, 8.0f);
 	handMovementSpeed = 100.0f;
-	walkingSpeed = 100.0f;
+	walkingSpeed = 150.0f;
 	minMovementOffsetRadius = 5.0f;
 	maxMovementOffsetRadius = 40.0f;
 	swingingArmsSpeed = 8.0f;
@@ -153,10 +153,13 @@ void AVRMovement::SetupMovement(AVRPawn* playerPawn, bool dev)
 	if (navProps.Num() > agentID && navProps[agentID].IsValid()) player->floatingMovement->NavAgentProps = navProps[agentID];
 	else UE_LOG(LogVRMovement, Warning, TEXT("The agentID is out of bounds, navmesh may not support all agents..."));
 
+	// Reset this in case the setup movement is being ran for a second time during runtime.
+	canApplyVignette = true;
+	player->vignette->SetActive(false);
+	player->vignette->SetVisibility(false);
+
 	// Movement needs to be setup twice in the case of developer mode.
 	EVRMovementMode toSetUp = currentMovementMode;
-
-	// Use teleport movement with developer mode.
 	if (dev) toSetUp = EVRMovementMode::Teleport;
 	
 	// Update the current movement variables.
@@ -537,7 +540,7 @@ void AVRMovement::UpdateControllerMovement(AVRHand* movementHand)
 		else if (currentDirectionMode == EVRDirectionMode::Controller) controllerDirectionNoZ = movementHand->controller->GetForwardVector();
 
 		// Get speed ramp scale.
-		speedScale = (-movementHand->thumbstick.Y + 1) / 2;
+		speedScale = FMath::Clamp(movementHand->thumbstick.Y, 0.0f, 1.0f);
 	}
 	else if (currentMovementMode == EVRMovementMode::Joystick)
 	{
@@ -548,7 +551,7 @@ void AVRMovement::UpdateControllerMovement(AVRHand* movementHand)
 		else if (currentDirectionMode == EVRDirectionMode::Controller) directionRotation = movementHand->controller->GetForwardVector().Rotation();
 
 		// Direction.
-		FVector dir = FVector(movementHand->thumbstick.X, movementHand->thumbstick.Y, 0);
+		FVector dir = FVector(movementHand->thumbstick.X, -movementHand->thumbstick.Y, 0);
 
 		// Rotate the thumbstick movement relative to the current direction.
 		controllerDirectionNoZ = dir.RotateAngleAxis(directionRotation.Yaw + 90.0f, FVector::UpVector);
@@ -673,11 +676,11 @@ void AVRMovement::UpdateTeleport(AVRHand* movementHand)
 			lastValidTeleportLocation = splineEndLocation;
 
 			// Update the rotation direction depending on the thumb offset dead zone.
-			FVector thumbOffset = FVector(movementHand->thumbstick.X, movementHand->thumbstick.Y, 0.0f);
+			FVector thumbOffset = FVector(movementHand->thumbstick.X * -1, movementHand->thumbstick.Y, 0.0f);
 			if (thumbOffset.Size() > FMath::Clamp(teleportDeadzone, 0.0f, 1.0f))
 			{
 				FRotator thumbRotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, thumbOffset);
-				teleportRotation = FRotator(thumbRotation.Pitch, player->camera->GetComponentRotation().Yaw + thumbRotation.Yaw + 90.0f, thumbRotation.Roll);
+				teleportRotation = FRotator(thumbRotation.Pitch, player->camera->GetComponentRotation().Yaw + thumbRotation.Yaw - 90.0f, thumbRotation.Roll);
 				if (!teleportArrow->IsVisible()) teleportArrow->SetVisibility(true);
 			}
 			else

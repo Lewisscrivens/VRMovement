@@ -107,9 +107,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Movement|Teleport")
 	TArray<TEnumAsByte<EObjectTypeQuery>> teleportableTypes;
 
-	/* Array destination of the current agent properties from navigation system settings in the project settings... */
+	/* Array destination of the current agent properties from navigation system settings in the project settings... 
+	 * NOTE: By default only agent in the nav system properties named player at index 0... */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Movement|Teleport")
-	int agentID = 1;
+	int agentID = 0;
 
 	/* Material color for invalid teleport location. */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Movement|Teleport")
@@ -164,7 +165,7 @@ public:
 	float handMovementSpeed;
 
 	/* Amount forward and backward the hands can be translated. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement|WalkingMovement", meta = (ClampMin = "100.0", UIMin = "300.0", ClampMax = "100.0", UIMax = "300.0"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement|WalkingMovement", meta = (ClampMin = "100.0", UIMin = "100.0", ClampMax = "300.0", UIMax = "300.0"))
 	float walkingSpeed;
 
 	/* Will the peripherals be darkened during walking movement to decrease motion sickness. */

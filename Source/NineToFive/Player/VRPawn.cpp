@@ -320,6 +320,7 @@ void AVRPawn::ThumbstickLeftX(float val)
 		bool moveEnabled = false;
 		switch (vrMovement->currentMovementMode)
 		{
+		case EVRMovementMode::Teleport:
 		case EVRMovementMode::Joystick:
 		case EVRMovementMode::SpeedRamp:
 			moveEnabled = true;
@@ -329,7 +330,7 @@ void AVRPawn::ThumbstickLeftX(float val)
 		// Setup movement if needed.
 		if (moveEnabled)
 		{
-			if (vrMovement && vrMovement->canMove && !leftHand->gripping)
+			if (vrMovement && vrMovement->canMove)
 			{
 				if (val != 0.0f)
 				{
@@ -352,6 +353,7 @@ void AVRPawn::ThumbstickLeftY(float val)
 		bool moveEnabled = false;
 		switch (vrMovement->currentMovementMode)
 		{
+		case EVRMovementMode::Teleport:
 		case EVRMovementMode::Joystick:
 		case EVRMovementMode::SpeedRamp:
 			moveEnabled = true;
@@ -361,7 +363,7 @@ void AVRPawn::ThumbstickLeftY(float val)
 		// Setup movement if needed.
 		if (moveEnabled)
 		{
-			if (vrMovement && vrMovement->canMove && !leftHand->gripping)
+			if (vrMovement && vrMovement->canMove)
 			{
 				if (val != 0.0f)
 				{
@@ -384,6 +386,7 @@ void AVRPawn::ThumbstickRightX(float val)
 		bool moveEnabled = false;
 		switch (vrMovement->currentMovementMode)
 		{
+		case EVRMovementMode::Teleport:
 		case EVRMovementMode::Joystick:
 		case EVRMovementMode::SpeedRamp:
 			moveEnabled = true;
@@ -393,7 +396,7 @@ void AVRPawn::ThumbstickRightX(float val)
 		// Setup movement if needed.
 		if (moveEnabled)
 		{
-			if (vrMovement && vrMovement->canMove && !rightHand->gripping)
+			if (vrMovement && vrMovement->canMove)
 			{
 				if (val != 0.0f)
 				{
@@ -416,6 +419,7 @@ void AVRPawn::ThumbstickRightY(float val)
 		bool moveEnabled = false;
 		switch (vrMovement->currentMovementMode)
 		{
+		case EVRMovementMode::Teleport:
 		case EVRMovementMode::Joystick:
 		case EVRMovementMode::SpeedRamp:
 			moveEnabled = true;
@@ -425,7 +429,7 @@ void AVRPawn::ThumbstickRightY(float val)
 		// Setup movement if needed.
 		if (moveEnabled)
 		{
-			if (vrMovement && vrMovement->canMove && !rightHand->gripping)
+			if (vrMovement && vrMovement->canMove)
 			{
 				if (val != 0.0f)
 				{

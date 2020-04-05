@@ -20,8 +20,9 @@ class UMotionControllerComponent;
 class UVRPhysicsHandleComponent;
 class USkeletalMeshComponent;
 class UHapticFeedbackEffect_Base;
-class UEffectsContainer;
-class UAudioComponent;
+class UWidgetInteractionComponent;
+class USphereComponent;
+class UWidgetComponent;
 
 /* NOTE: Just flipping a mesh on an axis to create a left and right hand from the said mesh will break its physics asset in version UE4.21.2...
  * NOTE: HandSkel collision used for interacting with grabbable etc. Constrained components must use physicsCollider to prevent constraint breakage. */
@@ -51,6 +52,14 @@ public:
 	/* Movement controller direction. (Point forward on X-axis in direction of hand and position to spawn teleporting spline etc.) */
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	USceneComponent* movementTarget;
+
+	/* Sphere component to detect overlaps with widgets in the 3D world to fire the widgetInteractor events correctly. */
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
+	USphereComponent* widgetOverlap;
+
+	/* Widget interaction component to allow interaction with 3D ui via touching it with the index finger on either hand. */
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
+	UWidgetInteractionComponent* widgetInteractor;
 
 	/* Pointer to the main player class. Initialized in the player class. */
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Hand")
@@ -138,6 +147,10 @@ public:
 
 	/* Frame */
 	virtual void Tick(float DeltaTime) override;
+
+	/* Widget interactor begin overlap event. */
+	UFUNCTION(Category = "Collision")
+	void WidgetInteractorOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	/* Grab pressed. */
 	void Grab();
