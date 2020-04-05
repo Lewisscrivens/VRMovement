@@ -3,12 +3,12 @@
 #include "CustomComponent/SimpleTimeline.h"
 #include "GameFramework/Actor.h"
 
-
 USimpleTimeline::USimpleTimeline()
 {
+	//...
 }
 
-USimpleTimeline* USimpleTimeline::MAKE(UCurveFloat * timelineCurve, FName timelineName, UObject * propertySetObject, FName callbackFunction, FName finishFunction, AActor * owningActor, FName timelineVariableName, bool looping, ETimelineLengthMode timelineLength, TEnumAsByte<ETimelineDirection::Type> timelineDirection)
+USimpleTimeline* USimpleTimeline::CreateNewTimeline(UCurveFloat * timelineCurve, FName timelineName, UObject * propertySetObject, FName callbackFunction, FName finishFunction, AActor * owningActor, FName timelineVariableName, bool looping, ETimelineLengthMode timelineLength, TEnumAsByte<ETimelineDirection::Type> timelineDirection)
 {
 	if (timelineCurve)
 	{

@@ -540,7 +540,7 @@ void AVRMovement::UpdateControllerMovement(AVRHand* movementHand)
 		else if (currentDirectionMode == EVRDirectionMode::Controller) controllerDirectionNoZ = movementHand->controller->GetForwardVector();
 
 		// Get speed ramp scale.
-		speedScale = FMath::Clamp(-movementHand->thumbstick.Y, 0.0f, 1.0f);
+		speedScale = FMath::Clamp(movementHand->thumbstick.Y, 0.0f, 1.0f);
 	}
 	else if (currentMovementMode == EVRMovementMode::Joystick)
 	{
@@ -551,7 +551,7 @@ void AVRMovement::UpdateControllerMovement(AVRHand* movementHand)
 		else if (currentDirectionMode == EVRDirectionMode::Controller) directionRotation = movementHand->controller->GetForwardVector().Rotation();
 
 		// Direction.
-		FVector dir = FVector(movementHand->thumbstick.X, movementHand->thumbstick.Y, 0);
+		FVector dir = FVector(movementHand->thumbstick.X, -movementHand->thumbstick.Y, 0);
 
 		// Rotate the thumbstick movement relative to the current direction.
 		controllerDirectionNoZ = dir.RotateAngleAxis(directionRotation.Yaw + 90.0f, FVector::UpVector);
@@ -676,11 +676,11 @@ void AVRMovement::UpdateTeleport(AVRHand* movementHand)
 			lastValidTeleportLocation = splineEndLocation;
 
 			// Update the rotation direction depending on the thumb offset dead zone.
-			FVector thumbOffset = FVector(movementHand->thumbstick.X, movementHand->thumbstick.Y, 0.0f);
+			FVector thumbOffset = FVector(movementHand->thumbstick.X * -1, movementHand->thumbstick.Y, 0.0f);
 			if (thumbOffset.Size() > FMath::Clamp(teleportDeadzone, 0.0f, 1.0f))
 			{
 				FRotator thumbRotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, thumbOffset);
-				teleportRotation = FRotator(thumbRotation.Pitch, player->camera->GetComponentRotation().Yaw + thumbRotation.Yaw + 90.0f, thumbRotation.Roll);
+				teleportRotation = FRotator(thumbRotation.Pitch, player->camera->GetComponentRotation().Yaw + thumbRotation.Yaw - 90.0f, thumbRotation.Roll);
 				if (!teleportArrow->IsVisible()) teleportArrow->SetVisibility(true);
 			}
 			else

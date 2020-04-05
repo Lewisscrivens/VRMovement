@@ -5,14 +5,7 @@
 #include "Delegates/DelegateSignatureImpl.inl"
 #include "SimpleTimeline.generated.h"
 
-/* Macro for returning function names. */
-#define FUNCTION_TO_STRING(func) STATIC_FUNCTION_FNAME(TEXT(#func))
-
-/* Define classes used. */
-class UserClass;
-
-/* A time line helper class for creating easier to use timers.
- * Created by Mark Booth. */
+/* A time line helper class for creating easier to use timers. */
 UCLASS()
 class NINETOFIVE_API USimpleTimeline : public UActorComponent
 {
@@ -26,7 +19,7 @@ public:
 	/* Time line used to morph the player */
 	UTimelineComponent* timelineComponent;
 
-	/* <summary>initializes a time line</summary>
+	/* Initializes a new time line.
 	 * @Param timelineCurve, The curve that the time line will use
 	 * @Param timelineName, The name of the time line
 	 * @Param propertySetObject, The object that the time line callbacks will be called to
@@ -37,7 +30,7 @@ public:
 	 * @Param looping, Should the time line loop
 	 * @Param timelineLength, The length of the time line can be the total length of the curve of between the key points. */
 	UFUNCTION(BlueprintCallable, Category = "Objects", meta = (DeterminesOutputType = "ObjClass"))
-		static USimpleTimeline* MAKE(UCurveFloat* timelineCurve, FName timelineName, UObject* propertySetObject,
+		static USimpleTimeline* CreateNewTimeline(UCurveFloat* timelineCurve, FName timelineName, UObject* propertySetObject,
 			FName callbackFunction, FName finishFunction, AActor* owningActor, FName timelineVariableName = NAME_None, bool looping = false,
 			ETimelineLengthMode timelineLength = ETimelineLengthMode::TL_LastKeyFrame, TEnumAsByte<ETimelineDirection::Type> timelineDirection = ETimelineDirection::Forward);	
 

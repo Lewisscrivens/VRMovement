@@ -78,11 +78,27 @@
 			"requirement": "optional"
 		},
 		{
+			"name": "/actions/main/in/FireArrowLeft",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/FireArrowRight",
+			"type": "boolean"
+		},
+		{
 			"name": "/actions/main/in/GrabL",
 			"type": "boolean"
 		},
 		{
+			"name": "/actions/main/in/GrabLeft",
+			"type": "boolean"
+		},
+		{
 			"name": "/actions/main/in/GrabR",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/GrabRight",
 			"type": "boolean"
 		},
 		{
@@ -94,12 +110,48 @@
 			"type": "boolean"
 		},
 		{
+			"name": "/actions/main/in/HeadsetOn",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/TeleportLeft",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/TeleportRight",
+			"type": "boolean"
+		},
+		{
 			"name": "/actions/main/in/ThumbMiddleL",
 			"type": "boolean"
 		},
 		{
 			"name": "/actions/main/in/ThumbMiddleR",
 			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/MoveLeft_X,MoveLeft_Y X Y_axis2d",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/main/in/MoveRight_X,MoveRight_Y X Y_axis2d",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/main/in/SqueezeLeft axis",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/main/in/SqueezeRight axis",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/main/in/TeleportDirectionLeft_X,TeleportDirectionLeft_Y X Y_axis2d",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/main/in/TeleportDirectionRight_X,TeleportDirectionRight_Y X Y_axis2d",
+			"type": "vector2"
 		},
 		{
 			"name": "/actions/main/in/ThumbstickLeft_X,ThumbstickLeft_Y X Y_axis2d",
@@ -134,6 +186,10 @@
 			"binding_url": "holographic_controller.json"
 		},
 		{
+			"controller_type": "indexhmd",
+			"binding_url": "indexhmd.json"
+		},
+		{
 			"controller_type": "index_hmd",
 			"binding_url": "index_hmd.json"
 		},
@@ -146,6 +202,10 @@
 			"binding_url": "oculus_touch.json"
 		},
 		{
+			"controller_type": "rift",
+			"binding_url": "rift.json"
+		},
+		{
 			"controller_type": "vive",
 			"binding_url": "vive.json"
 		},
@@ -154,8 +214,20 @@
 			"binding_url": "vive_controller.json"
 		},
 		{
+			"controller_type": "vive_cosmos_controller",
+			"binding_url": "vive_cosmos_controller.json"
+		},
+		{
+			"controller_type": "vive_pro",
+			"binding_url": "vive_pro.json"
+		},
+		{
 			"controller_type": "vive_tracker",
 			"binding_url": "vive_tracker.json"
+		},
+		{
+			"controller_type": "vive_tracker_camera",
+			"binding_url": "vive_tracker_camera.json"
 		}
 	],
 	"localization": [
@@ -176,12 +248,25 @@
 			"/actions/main/in/open_console": "Open Console",
 			"/actions/main/out/vibrateleft": "Haptic (Left)",
 			"/actions/main/out/vibrateright": "Haptic (Right)",
+			"/actions/main/in/FireArrowLeft": "FireArrowLeft",
+			"/actions/main/in/FireArrowRight": "FireArrowRight",
 			"/actions/main/in/GrabL": "GrabL",
+			"/actions/main/in/GrabLeft": "GrabLeft",
 			"/actions/main/in/GrabR": "GrabR",
+			"/actions/main/in/GrabRight": "GrabRight",
 			"/actions/main/in/GripL": "GripL",
 			"/actions/main/in/GripR": "GripR",
+			"/actions/main/in/HeadsetOn": "HeadsetOn",
+			"/actions/main/in/TeleportLeft": "TeleportLeft",
+			"/actions/main/in/TeleportRight": "TeleportRight",
 			"/actions/main/in/ThumbMiddleL": "ThumbMiddleL",
 			"/actions/main/in/ThumbMiddleR": "ThumbMiddleR",
+			"/actions/main/in/MoveLeft_X,MoveLeft_Y X Y_axis2d": "MoveLeft",
+			"/actions/main/in/MoveRight_X,MoveRight_Y X Y_axis2d": "MoveRight",
+			"/actions/main/in/SqueezeLeft axis": "SqueezeLeft",
+			"/actions/main/in/SqueezeRight axis": "SqueezeRight",
+			"/actions/main/in/TeleportDirectionLeft_X,TeleportDirectionLeft_Y X Y_axis2d": "TeleportDirectionLeft",
+			"/actions/main/in/TeleportDirectionRight_X,TeleportDirectionRight_Y X Y_axis2d": "TeleportDirectionRight",
 			"/actions/main/in/ThumbstickLeft_X,ThumbstickLeft_Y X Y_axis2d": "ThumbstickLeft",
 			"/actions/main/in/ThumbstickRight_X,ThumbstickRight_Y X Y_axis2d": "ThumbstickRight",
 			"/actions/main/in/TriggerL axis": "TriggerL",

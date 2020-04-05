@@ -1,6 +1,6 @@
 {
-	"name": "Default bindings for Vive Headset",
-	"controller_type": "vive",
+	"name": "Default bindings for Valve Index Headset",
+	"controller_type": "indexhmd",
 	"bindings":
 	{
 		"/actions/main":

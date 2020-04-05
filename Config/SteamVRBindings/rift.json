@@ -1,6 +1,6 @@
 {
-	"name": "Default bindings for Vive Headset",
-	"controller_type": "vive",
+	"name": "Default bindings for Rift Headset",
+	"controller_type": "rift",
 	"bindings":
 	{
 		"/actions/main":
