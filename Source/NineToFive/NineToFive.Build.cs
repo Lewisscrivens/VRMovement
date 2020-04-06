@@ -9,7 +9,7 @@ public class NineToFive : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" , "HeadMountedDisplay", "NavigationSystem", "AIModule",
-            "UMG", "Slate", "SlateCore", "RenderCore", "Paper2D"});
+            "UMG", "Slate", "SlateCore", "RenderCore", "Paper2D", "PhysX" , "APEX"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "RenderCore" });
 
